@@ -1,0 +1,23 @@
+# == Cache do Python ==
+*.pyc
+__pycache__
+
+# == Arquivos do ambiente virtual
+myvenv
+../myvenv
+
+# == Configurações de produção ==
+emaula/website/settings/production.py
+emaula/website/settings/settings.py
+emaula/website/settings/secrets.json
+emaula/website/secrets.json
+
+# == Banco de dados ==
+db.sqlite3
+emaula/school/migrations
+emaula/school/migrations
+emaula/polls/migrations
+emaula/lessons/migrations
+
+# == Configuração do servidor ==
+server_config

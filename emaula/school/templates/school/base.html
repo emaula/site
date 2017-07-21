@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+<html>
+    <head>
+        <title>{% block title %}EmAula.xyz{% endblock %}</title>
+        <meta charset="utf-8">
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@rsip22" />
+        <meta name="twitter:creator" content="@rsip22" />
+        <!-- Facebook's Open Graph -->
+        <meta property="og:url" content="https://emaula.xyz" />
+        <meta property="og:title" content="EmAula - Um site para facilitar a vida de quem ensina." />
+        <meta property="og:description" content="Um site para facilitar a vida de quem ensina." />
+        <meta property="og:image" content="https://emaula.xyz/static/images/picjumbo5096.jpg" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <link href="{% static 'css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
+    </head>
+
+    <body>
+        {% block navigation %}
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header text-center">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/" >Em Aula</a>
+                    </div>
+
+                    <div id="navbar" class="collapse text-center navbar-collapse">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="nav-item">
+                                <a href="{% url 'school:about' %}">Sobre</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'school:team' %}">Equipe</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'school:colaborate' %}">Colabore!</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'school:register' %}">Inscreva-se!</a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            {% if user.is_authenticated %}
+                                <span>Olá, {{ user.first_name.capitalize }}!</span>
+                                <small>(<a href="{% url 'logout' %}">Sair</a>)</small>
+                            {% else %}
+                            {% endif %}
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </nav>
+        {% endblock %}
+
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        {% block footer %}
+            <footer class="footer text-center">
+                <p><a href="{% url 'school:tos' %}">Termos de uso</a></p>
+            </footer>
+        {% endblock %}
+
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    </body>
+</html>

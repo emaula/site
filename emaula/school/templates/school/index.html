@@ -1,0 +1,55 @@
+{% extends 'school/base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+            <a href="#" class="thumbnail"><img class="img-thumbnail" src="{% static 'images/picjumbo5096.jpg' %}" alt="Imagem de uma mesa, com diversos materiais como lápis, borracha, papeis para notas, tesoura, celular."/></a>
+        </div>
+        <div class="col-md-4">
+            {% if user.is_authenticated %}
+                <p class="lead">Olá, {{ user.first_name.capitalize }}!</p>
+                <br>
+                <h4>O que você gostaria de fazer?</h4>
+                <p><a href="/admin">Criar uma aula</a></p>
+                <p><a href="{% url 'school:professor_lessons_list' pk=user.id %}">Listar aulas publicadas</a></p>
+
+                <p><a href="mailto:rsip22@openmailbox.org">Enviar e-mail para a administração</a>
+            {% else %}
+                <div id="login">
+                    <div class="panel text-center">
+                        <h3 class="panel-heading text-center">Entre</h3>
+                        <form method="post" name="LoginForm" action="{% url 'login' %}">
+                            {% csrf_token %}
+                            {% if next %}
+                                <input type="hidden" name="next" value="{{ next }}" />
+                            {% endif %}
+                            <div class="panel-body">
+                                <div class="control-group">
+                                    <label class="control-label" for="username">Nome de usuário</label>
+                                    <div class="controls">
+                                        <input type="text" id="username" name="username"  placeholder="Login">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="password">Senha</label>
+                                    <div class="controls">
+                                        <input type="password" name="password" id="password" placeholder="Senha">
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn btn-info" value="Entrar" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <footer class="footer text-center">
+        <p><small>Imagem por Viktor Hanacek, <a href="https://picjumbo.com/about-viktor-hanacek/">Picjumbo</a>. </small>| <span><a href="{% url 'school:tos' %}">Termos de uso do site</a></span></p>
+    </footer>
+{% endblock %}

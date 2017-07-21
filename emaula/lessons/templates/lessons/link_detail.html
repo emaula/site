@@ -1,0 +1,7 @@
+<h4>Detalhe do link</h4>
+
+{% block content %}
+    <h1>{{ link.name }}</h1>
+    <a href="{{ link.url }}">{{ link.url }}</a>
+    <p>Acessado em: <em>{{ link.access_date }}</em></p>
+{% endblock %}

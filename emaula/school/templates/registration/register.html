@@ -1,0 +1,28 @@
+{% extends 'school/base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel">
+                <h3 class="panel-heading text-center">Inscreva-se</h3>
+                <div class="panel-body">
+
+                {% if registered %}
+                    <strong>Obrigada por se inscrever!</strong>
+                    <a href="{% url 'school:index' %}">Voltar ao início</a><br>
+                {% else %}
+                    <form id="user_form" method="post" action="{% url 'school:register' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        {{ user_form.as_p }}
+                        {{ profile_form.as_p }}
+                        <input type="submit" class="btn btn-info" value="Register" />
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

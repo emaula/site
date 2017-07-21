@@ -1,0 +1,11 @@
+{% load embed_video_tags %}
+
+<h4>Detalhe do áudio</h4>
+
+    {% block content %}
+        <h1>{{ audio.title }}</h1>
+
+        {% video audio.audio as my_audio %}
+            {% video my_audio "small" %}
+        {% endvideo %}
+    {% endblock %}

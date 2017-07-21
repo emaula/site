@@ -1,0 +1,69 @@
+{% extends 'school/base.html' %}
+
+{% load static %}
+
+{% load embed_video_tags %}
+
+{% block title %}Aula de {{ classroom.display_subject }}, Prof. {{ classroom.author }}{% endblock %}
+
+
+{% block content %}
+    <div class="text-center">
+        <p>Aula de {{ classroom.display_subject }} - {{ classroom.display_year }}</p> 
+        <h2>{{ classroom.title }}</a></h2>
+        <h4><em>Prof. {{ classroom.author }}</em></h4>
+    </div>
+        <p>Resumo: {{ classroom.summary }}</p>
+    <hr>
+
+    {% for text in classroom.text.all %}
+        <h4>Leia o seguinte texto:</h4>
+        <div class="bg-info">
+            <section>
+            <h2 class="text-center">{{ text.title.capitalize }}</h2>
+            {{ text.text|linebreaksbr }}
+            <hr>
+            <p><em>Fonte:</em> <a href="{{ text.source }}">{{ text.source }}</a></p>
+            </section>
+        </div>
+        {% if not forloop.last %} {% endif %}
+    {% endfor %}
+
+    <hr>
+
+    {% for link in classroom.link.all %}
+        <h4>Veja o link abaixo:</h4>
+        <p class="lead"><a href="{{ link.url }}">{{ link.name }}</a></p><em>Data de acesso:</em> {{ link.access_date }}.
+        <hr>
+        {% if not forloop.last %} {% endif %}
+    {% endfor %}
+    
+    {% for image in classroom.image.all %}
+        <h4>Veja a imagem abaixo:</h4>
+        <img src="{{ image.url }}" alt="{{ image.alt }}" />
+        <hr>
+        {% if not forloop.last %} {% endif %}
+    {% endfor %}
+
+    {% for video in classroom.video.all %}
+        <h4>Veja o vídeo abaixo:</h4>
+        <h2>{{ video.title }}</h2>
+        {% video video.video as my_video %}
+            {% video my_video "small" %}
+            <p>Link original: <a href="{{ my_video.url }}">{{ my_video.url }}</a></p>
+        {% endvideo %}
+        <hr>
+        {% if not forloop.last %} {% endif %}
+    {% endfor %}
+
+    {% for audio in classroom.audio.all %}
+        <h4>Ouça o áudio abaixo:</h4>
+        <h2>{{ audio.title }}</h2>
+        {% video audio.audio as my_audio %}
+            {% video my_audio "small" %}
+        {% endvideo %}
+        <hr>
+        {% if not forloop.last %} {% endif %}
+    {% endfor %}
+    
+{% endblock %}

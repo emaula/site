@@ -1,0 +1,12 @@
+{% load embed_video_tags %}
+
+<h1>Audios</h1>
+
+    {% for audio in audio_list %}
+        <h2><a href="{% url 'lessons:audio_detail' pk=audio.pk %}">{{ audio.title }}</a></h2>
+        {% video audio.audio as my_audio %}
+            {% video my_audio "small" %}
+        {% endvideo %}
+        <hr>
+    {% endfor %}
+

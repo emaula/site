@@ -1,0 +1,26 @@
+{% extends 'school/base.html' %}
+
+{% load static %}
+
+<title>{% block title %}EmAula.xyz - Status do site{% endblock %}</title>
+
+{% block content %}
+    <h2>Status do site</h2>
+
+    <ul>
+        <li>
+            Total de professoras e professores no sistema: 
+            {{ all_professors }} 
+        </li>
+        <li>
+            Total de aulas criadas: 
+            {{ all_professors_all_classes }} 
+        </li>
+        <li>
+            Total de aulas publicadas: 
+            {{ all_professors_all_published_classes }} 
+        </li>
+        <li><a href="{% url 'school:professor' %}">Professoras e professores registrados</a></li>
+        <li><a href="{% url 'school:classroom_list' %}">Lista de aulas</a></li>
+    </ul>
+{% endblock %}

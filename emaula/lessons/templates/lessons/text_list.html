@@ -1,0 +1,9 @@
+<h1>Textos</h1>
+
+    {% for text in text_list %}
+        <h2>
+            <a href="{% url 'lessons:text_detail' pk=text.pk %}">{{ text.title }}</a>
+        </h2>
+        {{ text.text }}
+        <hr>
+    {% endfor %}

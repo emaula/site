@@ -1,0 +1,14 @@
+{% load embed_video_tags %}
+
+<h1>Lista de vídeos</h1>
+
+    {% for video in video_list %}
+        <h2>
+            <a href="{% url 'lessons:video_detail' pk=video.pk %}">{{ video.title }}</a>
+        </h2>
+        {% video video.video as my_video %}
+            {% video my_video "small" %}
+            <p>Link original: <a href="{{ my_video.url }}">{{ my_video.url }}</a></p>
+        {% endvideo %}
+        <hr>
+    {% endfor %}

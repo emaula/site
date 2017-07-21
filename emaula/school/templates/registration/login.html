@@ -1,0 +1,45 @@
+{% extends 'school/base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8">
+        <!-- Video Vimeo How Using This App -->
+            <a href="#" class="thumbnail">
+
+                <img class="img-thumbnail" src="{% static 'images/picjumbo5096.jpg' %}" alt="Imagem de uma mesa, com diversos materiais como lápis, borracha, papeis para notas, tesoura, celular."/>
+            </a>
+        </div>
+
+        <!-- Sign In or Registre -->
+        <div class="col-md-4 text-center">
+            <div class="panel">
+                <h3 class="panel-heading text-center">Entrar</h3>
+                <div class="panel-body">
+                    {% if form.errors %}
+                        <p><em>Usuário ou senha inválidos. Por favor, tente novamente.</em></p>
+                    {% endif %}
+                    {% if next %}
+                        {% if user.is_authenticated %}
+                            <p>Sua conta não tem acesso a essa página. Para prosseguir, por favor entre com uma conta que tenha acesso.</p>
+                            {% else %}
+                            <p>Por favor, entre para ver essa página.</p>
+                        {% endif %}
+                    {% endif %}
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                            <p>{{ form.username.label_tag }}
+                            <span>{{ form.username }}</span></p>
+                            <p>{{ form.password.label_tag }}
+                            <span>{{ form.password }}</span></p>
+
+                        <input type="submit" class="btn btn-info" value="Entrar" />
+                        <input type="hidden" name="next" value="{{ next }}"></input>
+                    </form>
+                    <p><a href="{% url 'password_reset' %}">Esqueceu a senha?</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

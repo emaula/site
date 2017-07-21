@@ -1,0 +1,8 @@
+<h1>Links</h1>
+
+<ul>
+    {% for link in link_list %}
+        <li><a href="{% url 'lessons:link_detail' pk=link.pk %}">{{ link.name }}</a></li>
+        <p>Data de acesso: <em>{{ link.access_date }}</em></p>
+    {% endfor %}
+</ul>

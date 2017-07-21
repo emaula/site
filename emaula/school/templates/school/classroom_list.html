@@ -1,0 +1,22 @@
+{% extends 'school/base.html' %}
+
+{% load static %}
+
+<title>{% block title %}EmAula.xyz - Lista de aulas publicadas{% endblock %}</title>
+
+{% block content %}
+    <h2>Lista de aulas publicadas</h2>
+    <br>
+    
+    {% if classroom_list %}
+        <ul>
+            {% for class in classroom_list %}
+                <h4><a href="{% url 'school:classroom_detail' pk=class.pk %}"> {{ class }}</a></h4>
+                <p><em>Prof. {{ class.author }}</em>
+                <br>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Não existem aulas publicadas.</p>
+    {% endif %}
+{% endblock %}

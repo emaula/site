@@ -1,0 +1,12 @@
+{% load embed_video_tags %}
+
+<h4>Detalhe do vídeo</h4>
+
+    {% block content %}
+        <h1>{{ video.title }}</h1>
+
+        {% video video.video as my_video %}
+            {% video my_video "small" %}
+            <p>Link original: <a href="{{ my_video.url }}">{{ my_video.url }}</a></p>
+        {% endvideo %}
+    {% endblock %}

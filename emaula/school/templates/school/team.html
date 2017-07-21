@@ -1,0 +1,24 @@
+{% extends 'school/base.html' %}
+
+{% load static %}
+
+<title>{% block title %}EmAula.xyz - Quem fez{% endblock %}</title>
+
+{% block content %}
+    <h2 class="text-center">Quem fez o Em Aula?</h2>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-12 col-lg-4 col-lg-offset-1 text-right">
+                <img class="img-thumbnail" src="{% static 'images/place_kitten.jpg' %}" alt="Gatinho">
+                <h3 class="text-uppercase"><a href="https://mml88.github.io/">Michele Menezes Luiz</a></h3>
+                <p>Eclética, escritora e apreciadora de músicas, acredita que a vida é um eterno aprendizado e que estamos aqui para transcender.</p>
+
+            </div><!-- /.col-lg-4 -->
+            <div class="col-md-12 col-lg-4 col-lg-offset-1 text-left">
+                <img class="img-thumbnail" src="{% static 'images/place_kitten.jpg' %}" alt="Gatinho">
+                <h3 class="text-uppercase"><a href="https://renatas.xyz/">Renata Scheibler</a></h3>
+                <p>Professora, ativista pelo software livre e por acesso à cultura e educação sem barreiras.</p>
+            </div><!-- /.col-lg-4 -->
+
+        </div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% load embed_video_tags %}
+<h1>Lessons index</h1>
+
+<nav>
+    <ul>
+        <a href="{% url 'lessons:text_list' %}">Lista de textos</a> |
+        <a href="{% url 'lessons:link_list' %}">Lista de links</a> |
+        <a href="{% url 'lessons:image_list' %}">Lista de imagens</a> |
+        <a href="{% url 'lessons:video_list' %}">Lista de videos</a> |
+        <a href="{% url 'lessons:audio_list' %}">Lista de audios</a>
+    </ul>
+</nav>
+
+<hr>
+
+<h2>Textos</h2>
+
+{% for item in all_lessons_objects.text_list %}
+    <h2><a href="{% url 'lessons:text_detail' pk=item.pk %}">{{ item.title }}</a></h2>
+    <p>{{ item.text }}</p>
+{% endfor %}
+<hr>
+
+<h2>Links</h2>
+
+<ul>
+    {% for item in all_lessons_objects.link_list %}
+        <li><a href="{{ item.link }}">{{ item.name }}</a></li>
+        <p>Data de acesso: <em>{{ item.access_date }}</em></p>
+    {% endfor %}
+</ul>
+
+
+<h2>Images</h2>
+
+    {% for item in all_lessons_objects.image_list %}
+        <img src="{{ item.image_path }}" alt="{{ item.alt }}">
+        <p class="lead">{{ item.alt }}</p>
+        {{ item }}
+    {% endfor %}
+
+<h2>Vídeos</h2>
+
+    {% for item in all_lessons_objects.video_list %}
+        <h2>{{ item.title }}</h2>
+        {% video item.video as my_video %}
+            {% video my_video "small" %}
+            <p>Link original: <a href="{{ my_video.url }}">{{ my_video.url }}</a></p>
+        {% endvideo %}
+    {% endfor %}
+
+<h2>Audios</h2>
+    {% for item in all_lessons_objects.audio_list %}
+        <h2>{{ item.title }}</h2>
+        {% video item.audio as my_audio %}
+            {% video my_audio "small" %}
+        {% endvideo %}
+    {% endfor %}

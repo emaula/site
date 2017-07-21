@@ -1,0 +1,8 @@
+{% load static %}
+
+<h1>Images</h1>
+
+    {% for image in image_list %}
+        <a href="{% url 'lessons:image_detail' pk=image.pk %}"><img src="/{{ image.image_path }}" alt="{{ image.alt }}"></a>
+        <p class="lead">{{ image.alt }}</p>
+    {% endfor %}

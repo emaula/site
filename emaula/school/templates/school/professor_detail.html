@@ -1,0 +1,16 @@
+{% extends 'school/base.html' %}
+
+{% load static %}
+
+<title>{% block title %}EmAula.xyz - Prof. {{ professor }} {% endblock %}</title>
+
+{% block content %}
+    <h2>Prof. {{ professor }}</h2>
+    <h4>Aulas publicadas:</h4>
+    <ul>
+        {% for item in professor.classroom.all %}
+            <li><a href="{% url 'school:classroom_detail' pk=item.pk %}">{{ item.title }}</a></li>
+            {% if not forloop.last %}{% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}

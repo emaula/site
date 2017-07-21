@@ -1,0 +1,34 @@
+{% extends 'school/base.html' %}
+
+{% load static %}
+
+<title>{% block title %}EmAula.xyz - Colabore{% endblock %}</title>
+
+{% block content %}
+    <div class="row">
+        <h2>Colabore com o Em Aula!</h2>
+        
+        <p>O Em Aula é feito por pessoas que acreditam que se pode melhorar a educação facilitando a vida das pessoas que ensinam e das que aprendem.</p>
+        
+        <p>Entretanto, ninguém consegue sobreviver de trabalho 100% gratuito, sem receber nada em troca. E, além do custo do nosso tempo e trabalho, também temos o custo do servidor e do domínio, para que esse site continue no ar, servindo a qualquer professora ou professor que queira utilizá-lo, independentemente de ter ou não os conhecimentos técnicos para instalar o código que escrevemos.</p>
+        
+        <p>Por isso, pedimos que, se você encontra uma utilidade real para este site, pense com carinho nas pessoas que o desenvolveram. Nós sabemos que a vida de quem educa é complicada e a questão do salário é mais difícil ainda. Ainda assim, pedimos que pense que todo e qualquer pouquinho que você puder doar para a manutenção desse projeto já ajuda um monte, considerando que esse site em si foi feito com dinheiro do nosso próprio bolso (no caso da Renata, o mesmo salário de professora) e suor do nosso trabalho. Se puder deixar de tomar um cafézinho <em>no mês</em> e mandar esse dinheiro para nós, já está de bom tamanho.</p>
+
+        <p>Você pode escolher o valor abaixo e clicar em "Doar!". Será levado à página com doação pelo PagSeguro.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            <input type="text" required="" placeholder="2,00" class="form-control" id="amount" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+            <button class="btn btn-block btn-info" disabled>Doar!</button>
+        </div>
+    </div>
+    <div class="text-muted text-center">
+        <p>Doação pelo PagSeguro ainda não disponível. Se você deseja doar, por favor, <a href="mailto:rsip22@openmailbox.org">entre em contato conosco</a>!</p>
+    </div>
+
+{% endblock %}
