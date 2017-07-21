@@ -72,9 +72,9 @@ Esse superusuário que você vai usar para logar localmente na interface adminis
 Atenção: se você estiver usando um MacOS X para desenvolver, você provavelmente precisará exportar algumas variáveis locale do Python. Siga esse link: [Fix unknown locale](http://patrick.arminio.info/fix-valueerror-unknown-locale-utf8/)
 
 ### Inicialize o servidor com as configurações de desenvolvimento:
-        ```
-        (myvenv)$ python manage.py runserver --settings=website.settings.dev
-        ```
+```
+(myvenv)$ python manage.py runserver --settings=website.settings.dev
+```
 Abra seu navegador em localhost:8000
 
 OU: abra seu navegador em localhost:8000/APP_QUE_VOCÊ_QUER
@@ -82,43 +82,43 @@ OU: abra seu navegador em localhost:8000/APP_QUE_VOCÊ_QUER
 Ex:
 
 Para vermos a administração:
-        ```
-        localhost:8000/admin
-        ```
+```
+localhost:8000/admin
+```
 
 Para vermos a app da escola:
-        ```
-        localhost:8000/school
-        ```
+```
+localhost:8000/school
+```
 
 Para vermos a app de aulas:
-        ```
-        localhost:8000/lessons
-        ```
+```
+localhost:8000/lessons
+```
 
 
 ### Para commitar as mudanças que você fez:
 
 Crie um novo branch para a funcionalidade desenvolvida:
-        ```
-        $ git checkout -b NOME_DO_NOVO_BRANCH
-        ```
+```
+$ git checkout -b NOME_DO_NOVO_BRANCH
+```
 
 Adicione os arquivos alterados. Por exemplo:
-        ```
-        $ git add --all .
-        ```
+```
+$ git add --all .
+```
 
 Faça o commit com a mensagem:
-        ```
-        $ git commit -m "altera tal e tal coisa"
+```
+$ git commit -m "altera tal e tal coisa"
 
-        ```
+```
 
 Envie para o repositório original, criando branch novo lá:
-        ```
-        $ git push origin NOME_DO_NOVO_BRANCH
-        ```
+```
+$ git push origin NOME_DO_NOVO_BRANCH
+```
 
 
 Estrutura das pastas:
