@@ -14,10 +14,6 @@ emaula/website/secrets.json
 
 # == Banco de dados ==
 db.sqlite3
-emaula/school/migrations
-emaula/school/migrations
-emaula/polls/migrations
-emaula/lessons/migrations
 
 # == Configuração do servidor ==
 server_config
