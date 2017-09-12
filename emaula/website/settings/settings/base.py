@@ -31,7 +31,22 @@ secrets = {
     "DB_NAME": "os.path.join(BASE_DIR, 'db.sqlite3')",
 }
 
+"""
+def get_secret(setting):
+    try:
+        secrets_file = open(os.path.join(BASE_DIR, "secrets.json")).read()
+        secrets = json.loads(secrets_file)
+        return secrets["SECRET_KEY"]
+    except KeyError:
+        error_msg = "Set the {0} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
+    finally:
+        if secrets_file in locals():
+            secrets_file.close()
+"""
+
 SECRET_KEY = secrets["SECRET_KEY"]
+# SECRET_KEY = get_secret('SECRET_KEY')
 
 DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']

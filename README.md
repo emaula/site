@@ -63,8 +63,8 @@ Antes de instalar as dependências do projeto, pode ser necessário instalar o p
 ### Crie um banco de dados e um superusuário
 Entre na pasta onde está o arquivo manage.py (site/emaula).
 ```
-(myvenv)$ python manage.py migrate --settings=website.settings.dev
-(myvenv)$ python manage.py createsuperuser --settings=website.settings.dev
+(myvenv)$ python manage.py migrate --settings=website.settings.base
+(myvenv)$ python manage.py createsuperuser --settings=website.settings.base
 ```
 
 Esse superusuário que você vai usar para logar localmente na interface administrativa.
@@ -73,7 +73,7 @@ Atenção: se você estiver usando um MacOS X para desenvolver, você provavelme
 
 ### Inicialize o servidor com as configurações de desenvolvimento:
 ```
-(myvenv)$ python manage.py runserver --settings=website.settings.dev
+(myvenv)$ python manage.py runserver --settings=website.settings.base
 ```
 Abra seu navegador em localhost:8000
 
