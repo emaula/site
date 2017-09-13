@@ -31,3 +31,5 @@ urlpatterns = [
     # Redireciona a home para a nossa aplicação:
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # STATIC URL STATIC ROOT para servir arquivos estáticos in development
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

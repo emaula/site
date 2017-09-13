@@ -12,6 +12,9 @@ emaula/website/settings/settings.py
 emaula/website/settings/secrets.json
 emaula/website/secrets.json
 
+# == Arquivos de media ==
+emaula/website/media/*
+
 # == Banco de dados ==
 db.sqlite3
 

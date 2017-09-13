@@ -9,7 +9,7 @@
 
 {% block content %}
     <div class="text-center">
-        <p>Aula de {{ classroom.display_subject }} - {{ classroom.display_year }}</p> 
+        <p>Aula de {{ classroom.display_subject }} - {{ classroom.display_year }}</p>
         <h2>{{ classroom.title }}</a></h2>
         <h4><em>Prof. {{ classroom.author }}</em></h4>
     </div>
@@ -37,10 +37,10 @@
         <hr>
         {% if not forloop.last %} {% endif %}
     {% endfor %}
-    
+
     {% for image in classroom.image.all %}
         <h4>Veja a imagem abaixo:</h4>
-        <img src="{{ image.url }}" alt="{{ image.alt }}" />
+        <img class="img-responsive" src="{{ image.image_path.url }}" alt="{{ image.alt }}" />
         <hr>
         {% if not forloop.last %} {% endif %}
     {% endfor %}
@@ -65,5 +65,5 @@
         <hr>
         {% if not forloop.last %} {% endif %}
     {% endfor %}
-    
+
 {% endblock %}
