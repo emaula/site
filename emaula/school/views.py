@@ -105,7 +105,7 @@ def register(request):
             user = user_form.save()
             user.set_password(user.password)
             user.is_staff = True
-            g = Group.objects.get(name='school_staff')
+            g, created = Group.objects.get_or_create(name='school_staff')
             g.user_set.add(user)
             user.save()
             profile = profile_form.save(commit=False)
