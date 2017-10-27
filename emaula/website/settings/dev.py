@@ -8,6 +8,8 @@ from .base import *
 
 DEBUG = True
 
+ALLOWED_HOSTS = ['emaula-rsip22207208.codeanyapp.com']
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

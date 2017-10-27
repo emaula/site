@@ -71,7 +71,7 @@ Esse superusuário que você vai usar para logar localmente na interface adminis
 
 Atenção: se você estiver usando um MacOS X para desenvolver, você provavelmente precisará exportar algumas variáveis locale do Python. Siga esse link: [Fix unknown locale](http://patrick.arminio.info/fix-valueerror-unknown-locale-utf8/)
 
-### Inicialize o servidor com as configurações de desenvolvimento:
+###  Inicialize o servidor com as configuraçõebase:
 ```
 (myvenv)$ python manage.py runserver --settings=website.settings.base
 ```
@@ -95,6 +95,22 @@ Para vermos a app de aulas:
 ```
 localhost:8000/lessons
 ```
+
+
+### Para inicializar no CodeAnywhere:
+1. Faça os procedimentos descritos, clonando o repositório, criando virtualenv, criando banco de dados e superusrio.
+
+
+2. Edite o arquivo site/emaula/website/settings/dev.py para colocar o endereço do seu container em ALLOWED_HOSTS, por exemplo:
+```
+ALLOWED_HOSTS = ['emaula-rsip22207208.codeanyapp.com']
+```
+
+3. Inicialize o servidor com as configurações de desenvolvimento e com a porta 3000, para poder acessar a app por HTTPS:
+
+```
+python manage.py runserver 0.0.0.0:3000 --settings=website.settings.dev
+``` 
 
 
 ### Para commitar as mudanças que você fez:
