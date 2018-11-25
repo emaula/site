@@ -6,7 +6,8 @@ app_name = 'school'
 
 urlpatterns = [
     # Barra de navegação
-    url(r'^$', views.IndexView.as_view(), name='index'),
+    # url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^$', views.home_page, name='index'),
     url(r'^about/$', views.about_project, name='about'),
     url(r'^team/$', views.team, name='team'),
     url(r'^colaborate/$', views.colaborate, name='colaborate'),
