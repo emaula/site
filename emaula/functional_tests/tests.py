@@ -49,7 +49,7 @@ class NewVisitorTest(LiveServerTestCase):
         # so they must register with the website
         self.browser.get(self.live_server_url)
 
-        # Inscreva-se! (Register)
+        # Register (Inscreva-se!)
         registration = self.browser.find_element_by_link_text('Inscreva-se!')
         registration.click()
 
@@ -78,7 +78,8 @@ class NewVisitorTest(LiveServerTestCase):
 
     def test_teacher_can_login_to_the_emaula_system(self):
         self.browser.get(self.live_server_url)
-        # In the homepage, the teacher finds an inputbox to login
+
+        # In the homepage, the teacher finds an input for the login
         username = self.browser.find_element_by_id('username')
         username.send_keys('chris_ann')
         self.assertEqual(
@@ -86,7 +87,7 @@ class NewVisitorTest(LiveServerTestCase):
             'Login'
         )
 
-        # And an inputbox for the password
+        # And an input for the password
         password = self.browser.find_element_by_id('password')
         password.send_keys('1a2b3c4d5e6f7g8H9i0Jk')
         self.assertEqual(

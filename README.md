@@ -14,7 +14,7 @@ $ git clone -b NOME_DO_BRANCH https://github.com/emaula/site.git
 
 ### Criar virtualenv na pasta
 Entre na pasta do repositório e crie um ambiente virtual (virtualenv). Se você não sabe como criar uma virtualenv, é altamente recomendado que leia o [tutorial DjangoGirls](http://tutorial.djangogirls.org/pt/django_installation/). Ative a virtualenv.
- 
+
 Linux/BSD
 ```
 $ python3 -m venv myvenv
@@ -110,8 +110,21 @@ ALLOWED_HOSTS = ['emaula-rsip22207208.codeanyapp.com']
 
 ```
 python manage.py runserver 0.0.0.0:3000 --settings=website.settings.dev
-``` 
+```
 
+### Para rodar os testes:
+
+Testes funcionais:
+
+```
+(myvenv)$ python manage.py test functional_tests --settings=website.settings.base
+```
+
+Testes das apps:
+
+```
+(myvenv)$ python manage.py test school --settings=website.settings.base
+```
 
 ### Para commitar as mudanças que você fez:
 
@@ -142,13 +155,16 @@ Estrutura das pastas:
 .
 ├── README.md                           # Esse arquivo que você está lendo
 ├── emaula
+│   ├── functional_tests                
+│   │   ├── __init__.py
+│   │   └── tests.py                    # Testes funcionais (teste de aceitação)
 │   ├── lessons                         # Aplicação das aulas
 │   │   ├── __init__.py
 │   │   ├── admin.py
 │   │   ├── apps.py
 │   │   ├── migrations                  # Banco de dados aula
 │   │   ├── models.py
-│   │   ├── tests.py                    # Testes da app
+│   │   ├── tests.py                    # Testes da app lessons
 │   │   ├── urls.py                     # Redirecionamentos páginas internas da app
 │   │   └── views.py                    # Processa request/response
 │   ├── manage.py                       # Arquivo importante que roda tudo
@@ -168,14 +184,14 @@ Estrutura das pastas:
 │   │   │   └── js                      # Javascripts pra app funcionar
 │   │   │       ├── bootstrap.min.js
 │   │   │       └── jquery.js
-│   │   ├── templates                   # Templates da app 
+│   │   ├── templates                   # Templates da app
 │   │   │   ├── registration
 │   │   │   │   ├── login.html
 │   │   │   │   └── register.html
 │   │   │   └── school
 │   │   │       ├── about.html
 │   │   │       ├── base.html               # Base todos templates
-│   │   │       ├── classroom_detail.html   # Detalhe aula 
+│   │   │       ├── classroom_detail.html   # Detalhe aula
 │   │   │       ├── classroom_list.html     # Lista de aulas
 │   │   │       ├── colaborate.html         # Colabore com o site
 │   │   │       ├── index.html              # Página inicial do site
@@ -184,7 +200,7 @@ Estrutura das pastas:
 │   │   │       ├── sitestatus.html         # Status do site
 │   │   │       └── team.html               # Equipe
 │   │   │       └── tos.html                # Termos de uso
-│   │   ├── tests.py                    # Testes da app
+│   │   ├── tests.py                    # Testes da app school
 │   │   ├── urls.py                     # Redirecionamentos páginas internas da app
 │   │   └── views.py                    # Processa request/response
 │   ├── templates                       # Templates da interface de admin

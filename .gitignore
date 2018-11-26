@@ -1,6 +1,7 @@
 # == Cache do Python ==
 *.pyc
 __pycache__
+.cache/
 
 # == Arquivos do ambiente virtual
 myvenv
@@ -11,6 +12,9 @@ emaula/website/settings/production.py
 emaula/website/settings/settings.py
 emaula/website/settings/secrets.json
 emaula/website/secrets.json
+
+# == Log do geckodriver (selenium) ==
+geckodriver.log
 
 # == Arquivos de media ==
 emaula/website/media/*
