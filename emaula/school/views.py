@@ -8,12 +8,12 @@ from .forms import ProfessorForm, ProfileForm
 from .models import Classroom, Professor
 
 
-def home_page(request):
-    return render(request, 'school/index.html')
-
-
 # class IndexView(generic.TemplateView):
 #     template_name = 'school/index.html'
+
+
+def home_page(request):
+    return render(request, 'school/index.html')
 
 
 def team(request):
