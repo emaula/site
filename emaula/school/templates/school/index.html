@@ -9,7 +9,7 @@
         </div>
         <div class="col-md-4">
             {% if user.is_authenticated %}
-                <p class="lead">Olá, {{ user.first_name.capitalize }}!</p>
+                <p class="lead">Olá, {{ user | title }}!</p>
                 <br>
                 <h4>O que você gostaria de fazer?</h4>
                 <p><a href="/admin">Criar uma aula</a></p>

@@ -58,7 +58,7 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             {% if user.is_authenticated %}
-                                <span>Olá, {{ user.first_name.capitalize }}!</span>
+                                <span>Olá, {{ user | title }}!</span>
                                 <small>(<a href="{% url 'logout' %}">Sair</a>)</small>
                             {% else %}
                             {% endif %}
