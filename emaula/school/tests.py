@@ -17,7 +17,9 @@ class HomePageTest(TestCase):
         request = HttpRequest()
         response = home_page(request)
         self.assertTrue(response.content.startswith(b'<!DOCTYPE html>'))
-        self.assertIn(b'<title>EmAula.xyz | Planeje e compartilhe suas aulas!</title>', response.content)
+        self.assertIn(
+            b'<title>EmAula.xyz | Planeje e compartilhe suas aulas!</title>',
+            response.content)
         self.assertTrue(response.content.strip().endswith(b'</html>'))
 
 
@@ -72,14 +74,14 @@ class ToSPageTest(TestCase):
 class YearTest(TestCase):
     def test_year_with_string_input(self):
         year = Year(year="2º ano")
-        self.assertEquals(
+        self.assertEqual(
             str(year),
             "2º ano",
         )
 
     def test_year_with_numeric_input(self):
         year = Year(year="8")
-        self.assertEquals(
+        self.assertEqual(
             str(year),
             "8",
         )
@@ -88,7 +90,7 @@ class YearTest(TestCase):
 class SubjectTest(TestCase):
     def test_subject_with_string_input(self):
         subject = Subject(subject="História")
-        self.assertEquals(
+        self.assertEqual(
             str(subject),
             "História",
         )
@@ -101,7 +103,7 @@ class ProfessorTest(TestCase):
             email='ana_maria@test.com',
             password='top_secret')
 
-        self.assertEquals(
+        self.assertEqual(
             str(professor),
             "ana_maria",
         )
@@ -112,7 +114,7 @@ class ProfessorTest(TestCase):
             email='ana_maria@test.com',
             password='top_secret')
 
-        self.assertEquals(
+        self.assertEqual(
             str(professor),
             "421_maria",
         )
@@ -128,7 +130,7 @@ class ClassroomTest(TestCase):
             views=0,
         )
 
-        self.assertEquals(
+        self.assertEqual(
             str(classroom),
             "Revolução Francesa e suas consequências",
         )

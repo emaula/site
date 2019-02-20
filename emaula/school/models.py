@@ -137,7 +137,7 @@ class Professor(models.Model):
                                  help_text='Último nome')
 
     def __str__(self):
-        if self.user.first_name is not '':
+        if self.user.first_name != '':
             return self.user.first_name.capitalize()
         else:
             return self.user.username.capitalize()
