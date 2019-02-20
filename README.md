@@ -124,6 +124,8 @@ Testes das apps:
 
 ```
 (myvenv)$ python manage.py test school --settings=website.settings.base
+
+(myvenv)$ python manage.py test lessons --settings=website.settings.base
 ```
 
 ### Para commitar as mudanças que você fez:

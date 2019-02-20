@@ -9,7 +9,7 @@ class LinkTest(TestCase):
                     name='Google',
                     access_date='30/06/2017')
 
-        self.assertEquals(
+        self.assertEqual(
             str(link),
             'Google - https://www.google.com',
         )
@@ -20,7 +20,7 @@ class ImageTest(TestCase):
     def test_str(self):
         image = Image(image_path='media/foo.jpg')
 
-        self.assertEquals(
+        self.assertEqual(
             str(image),
             'media/foo.jpg',
         )
@@ -31,7 +31,7 @@ class TextTest(TestCase):
     def test_str(self):
         text = Text(title='This is a test', text='Testing the text')
 
-        self.assertEquals(
+        self.assertEqual(
             str(text),
             'This is a test',
         )
@@ -43,7 +43,7 @@ class VideoTest(TestCase):
         video = Video(video='https://www.youtube.com/watch?v=CAUom6E7Wp8',
                       title='História da África')
 
-        self.assertEquals(
+        self.assertEqual(
             str(video),
             'História da África - https://www.youtube.com/watch?v=CAUom6E7Wp8',
         )
@@ -57,7 +57,7 @@ class AudioTest(TestCase):
             sounds/rap-das-armas-gregor-salto-2017-remix',
             title='Rap das Armas')
 
-        self.assertEquals(
+        self.assertEqual(
             str(audio),
             'Rap das Armas - https://soundcloud.com/salto\
             sounds/rap-das-armas-gregor-salto-2017-remix',

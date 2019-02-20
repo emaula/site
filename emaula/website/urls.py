@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^$', RedirectView.as_view(url='/school/', permanent=True)),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('django.contrib.auth.urls')),
-    url(r'^accounts/login/$', views.login, name='login'),
+    url(r'^accounts/login/$', views.LoginView, name='login'),
     url(r'^school/', include('school.urls')),
     url(r'^lessons/', include('lessons.urls')),
     # Redireciona a home para a nossa aplicação:

@@ -1,4 +1,4 @@
-from django.core.urlresolvers import resolve
+from django.urls import resolve
 from django.test import TestCase
 from django.http import HttpRequest
 from .views import home_page, colaborate, team, about_project, tos
@@ -121,8 +121,9 @@ class ProfessorTest(TestCase):
 
 
 class ClassroomTest(TestCase):
-    def test_classroom_title_with_string(self):
-        classroom = Classroom.objects.create(
+    @classmethod
+    def setUpTestData(cls):
+        cls.classroom = Classroom.objects.create(
             title="Revolução Francesa e suas consequências",
             summary="Antecedentes, desenrolar e reflexos na sociedade",
             created_date="2017-06-30",
@@ -130,7 +131,8 @@ class ClassroomTest(TestCase):
             views=0,
         )
 
+    def test_classroom_title_with_string(self):
         self.assertEqual(
-            str(classroom),
+            str(self.classroom),
             "Revolução Francesa e suas consequências",
         )

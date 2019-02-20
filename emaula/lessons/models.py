@@ -31,7 +31,7 @@ class Link(models.Model):
                                   blank=True,
                                   null=True)
 
-    url = models.URLField(blank=True)
+    url = models.URLField()
     name = models.CharField('Nome', max_length=600, blank=True)
     access_date = models.DateField('Data de acesso', default=timezone.now)
 
