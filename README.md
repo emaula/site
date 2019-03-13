@@ -28,7 +28,7 @@ C:\DIRETORIO_COM_PYTHON\python -m venv myvenv
 Ubuntu
 ```
 $ sudo apt-get install python-virtualenv
-$ virtualenv --python=python3.4 myvenv
+$ virtualenv --python=python3.6 myvenv
 ```
 
 ### Se / quando virtual env já estiver criada, ativar:
@@ -97,7 +97,7 @@ localhost:8000/lessons
 ```
 
 
-### Para inicializar no CodeAnywhere:
+### Para rodar no CodeAnywhere:
 1. Faça os procedimentos descritos, clonando o repositório, criando virtualenv, criando banco de dados e superusrio.
 
 
@@ -114,13 +114,35 @@ python manage.py runserver 0.0.0.0:3000 --settings=website.settings.dev
 
 ### Para rodar os testes:
 
-Testes funcionais:
+#### Testes funcionais:
+
+Você vai precisar ter o Geckodriver instalado e disponível no PATH para utilizar o Selenium.
+
+- Baixe o geckodriver:
+[https://github.com/mozilla/geckodriver/releases](https://github.com/mozilla/geckodriver/releases)
+
+- OU com wget:
+```
+$ wget -cv https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
+```
+
+- Extraia, mova para o diretório bin e coloque no PATH:
+```
+$ tar -xvzf geckodriver-v0.24.0-linux64.tar.gz
+$ sudo cp geckodriver /usr/local/bin
+$ sudo chmod +x /usr/local/bin/geckodriver
+$ export PATH=$PATH:/usr/local/bin/geckodriver
+```
+
+Rodar os testes funcionais:
 
 ```
 (myvenv)$ python manage.py test functional_tests --settings=website.settings.base
 ```
 
-Testes das apps:
+#### Testes das apps:
+
+Rodar os testes:
 
 ```
 (myvenv)$ python manage.py test school --settings=website.settings.base
