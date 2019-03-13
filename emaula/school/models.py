@@ -63,7 +63,7 @@ class Classroom(models.Model):
         self.save()
 
     def get_absolute_url(self):
-        return reverse('classroom_detail', args=[str(self.id)])
+        return reverse('school:classroom_detail', args=[str(self.id)])
 
     def display_subject(self):
         return ', '.join(

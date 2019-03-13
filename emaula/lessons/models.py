@@ -33,7 +33,7 @@ class Link(models.Model):
 
     url = models.URLField()
     name = models.CharField('Nome', max_length=600, blank=True)
-    access_date = models.DateField('Data de acesso', default=timezone.now)
+    access_date = models.DateField('Data de acesso')
 
     def __str__(self):
         return '{0} - {1}'.format(self.name, self.url)
