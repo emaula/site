@@ -6,8 +6,10 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 
-# Ano ou série
 class Year(models.Model):
+
+    """ Modelo para o ano ou série à qual a aula pertence. """
+
     year = models.CharField(max_length=20,
                             help_text='Série ou ano. Ex: 1º ano',
                             blank=True)
@@ -16,8 +18,10 @@ class Year(models.Model):
         return self.year
 
 
-# Disciplina
 class Subject(models.Model):
+
+    """ Modelo para disciplina(s) ou cadeira(s) à qual a aula pertence. """
+
     subject = models.CharField(max_length=255,
                                help_text='Disciplina ou cadeira',
                                blank=True,
@@ -27,8 +31,9 @@ class Subject(models.Model):
         return self.subject
 
 
-# Aulas
 class Classroom(models.Model):
+
+    """ Modelo com os conteúdos da aula, como textos, links, imagens, etc. """
 
     # TODO: Opção de deixar ou não pública a aula
     subject = models.ManyToManyField(Subject,
@@ -59,10 +64,12 @@ class Classroom(models.Model):
         return '{0}'.format(self.title)
 
     def publish(self):
+        """ Método para tornar pública uma aula. """
         self.published_date = timezone.now()
         self.save()
 
     def get_absolute_url(self):
+        """ Acessa uma aula específica através da interface administrativa. """
         return reverse('school:classroom_detail', args=[str(self.id)])
 
     def display_subject(self):
@@ -108,8 +115,10 @@ Classroom.objects.all().prefetch_related(
     'text', 'image', 'link', 'audio', 'video')
 
 
-# Aula
 class ClassroomInstance(models.Model):
+
+    """ Modelo par criar instância da aula. """
+
     id = models.UUIDField(primary_key=True,
                           default=uuid.uuid4,
                           editable=False)
@@ -124,8 +133,10 @@ class ClassroomInstance(models.Model):
                                         self.classroom.subject)
 
 
-# Professor
 class Professor(models.Model):
+
+    """ Modelo para o professor que criou a aula. """
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     picture = models.ImageField(upload_to='media',
                                 default='pic_folder/user/no-img.jpg')
@@ -143,8 +154,8 @@ class Professor(models.Model):
             return self.user.username.capitalize()
 
     def get_absolute_url(self):
-        # Acessa uma professora específica
-        return reverse('professor_detail', args=[str(self.id)])
+        """ Acessa uma professora específica através da interface administrativa. """
+        return reverse('school:professor_detail', args=[str(self.id)])
 
 
 Professor.objects.all().select_related('classroom').prefetch_related('user')
