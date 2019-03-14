@@ -29,9 +29,11 @@ $ mkvirtualenv --python=/usr/bin/python3.6 myvenv
 (myvenv)$ pip install -r requirements.txt
 ```
 
-6. Crie uma web app com configuração manual
+6. Entre na pasta do manage.py
 
-Na tab "Web", selecione "Add a new web app". Selecione "next" para não usar domínio personalizado (o que tem custo) e, então, "Manual configuration". Versão do Python, selecione "Python 3.6". Clique em "next".
+```
+$ cd emaula
+```
 
 7. Compile os arquivos estáticos (imagens, folhas de estilo, etc):
 
@@ -51,13 +53,19 @@ python manage.py migrate --settings=website.settings.base
 python manage.py createsuperuser --settings=website.settings.base
 ```
 
-10. Volte para a aba "Web". Nas configurações, defina o caminho da virtualenv, em "Virtualenv", coloque:
+10. Crie uma web app com configuração manual
+
+Na tab "Web", selecione "Add a new web app". Selecione "next" para não usar domínio personalizado (o que tem custo) e, então, "Manual configuration". Versão do Python, selecione "Python 3.6". Clique em "next".
+
+11. Configurações de caminhos:
+
+- Volte para a aba "Web". Nas configurações, defina o caminho da virtualenv, em "Virtualenv", coloque:
 
 ```
 /home/USERNAME/.virtualenvs/myvenv
 ```
 
-11. Configure os diretórios do código.
+- Configure os diretórios do código.
 
 ```
 Source code:
