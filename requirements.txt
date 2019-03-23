@@ -2,6 +2,7 @@ certifi==2017.4.17
 chardet==3.0.4
 Django==2.1.7
 django-embed-video==1.1.2
+django-environ==0.4.5
 idna==2.5
 olefile==0.44
 Pillow==4.1.1

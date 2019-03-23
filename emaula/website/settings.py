@@ -3,13 +3,20 @@ Django settings for website project.
 
 Settings common to all instances of the project.
 """
-import os
+import environ
 import json
+import os
+
 from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+
+# Load environment variables
+env = environ.Env(DEBUG=(bool, False),)  # set default values and casting
+PROJECT_ENV = os.path.join(BASE_DIR, '.env')
+environ.Env.read_env(PROJECT_ENV)
 
 # Media files (images)
 MEDIA_ROOT = MEDIA_DIR
@@ -24,33 +31,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATICFILES_DIR = [STATIC_DIR, ]
 LOGIN_REDIRECT_URL = '/'
 
+SECRET_KEY = env('SECRET_KEY')
 
-secrets = {
-    "SECRET_KEY": "_w*4&z)zywxmn9$4tuy_e7e9tlno(d2^i^%)h4&m_gn)&^p*15",
-    "DB_ENGINE": "django.db.backends.sqlite3",
-    "DB_NAME": "os.path.join(BASE_DIR, 'db.sqlite3')",
-}
+DEBUG = env('DEBUG') | False
 
-"""
-def get_secret(setting):
-    try:
-        secrets_file = open(os.path.join(BASE_DIR, "secrets.json")).read()
-        secrets = json.loads(secrets_file)
-        return secrets["SECRET_KEY"]
-    except KeyError:
-        error_msg = "Set the {0} environment variable".format(setting)
-        raise ImproperlyConfigured(error_msg)
-    finally:
-        if secrets_file in locals():
-            secrets_file.close()
-"""
-
-SECRET_KEY = secrets["SECRET_KEY"]
-# SECRET_KEY = get_secret('SECRET_KEY')
-
-DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-
 
 # Application definition
 
@@ -139,3 +124,9 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
+
+LOGOUT_REDIRECT_URL = '/'

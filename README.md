@@ -60,11 +60,20 @@ Antes de instalar as dependências do projeto, pode ser necessário instalar o p
 (myvenv)$ pip install -r requirements.txt
 ```
 
+### Configuração das variáveis de ambiente
+
+Crie arquivo .env no diretório raiz do projeto (emaula/site/.env) com as seguintes variáveis:
+
+```
+SECRET_KEY=
+DEBUG=True
+```
+
 ### Crie um banco de dados e um superusuário
 Entre na pasta onde está o arquivo manage.py (site/emaula).
 ```
-(myvenv)$ python manage.py migrate --settings=website.settings.base
-(myvenv)$ python manage.py createsuperuser --settings=website.settings.base
+(myvenv)$ python manage.py migrate
+(myvenv)$ python manage.py createsuperuser
 ```
 
 Esse superusuário que você vai usar para logar localmente na interface administrativa.
@@ -73,7 +82,7 @@ Atenção: se você estiver usando um MacOS X para desenvolver, você provavelme
 
 ###  Inicialize o servidor com as configuraçõebase:
 ```
-(myvenv)$ python manage.py runserver --settings=website.settings.base
+(myvenv)$ python manage.py runserver
 ```
 Abra seu navegador em localhost:8000
 
@@ -137,7 +146,7 @@ $ export PATH=$PATH:/usr/local/bin/geckodriver
 Rodar os testes funcionais:
 
 ```
-(myvenv)$ python manage.py test functional_tests --settings=website.settings.base
+(myvenv)$ python manage.py test functional_tests
 ```
 
 #### Testes das apps:
@@ -145,9 +154,9 @@ Rodar os testes funcionais:
 Rodar os testes:
 
 ```
-(myvenv)$ python manage.py test school --settings=website.settings.base
+(myvenv)$ python manage.py test school
 
-(myvenv)$ python manage.py test lessons --settings=website.settings.base
+(myvenv)$ python manage.py test lessons
 ```
 
 ### Para commitar as mudanças que você fez:
