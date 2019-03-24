@@ -7,11 +7,8 @@ __pycache__
 myvenv
 ../myvenv
 
-# == Configurações de produção ==
-emaula/website/settings/production.py
-emaula/website/settings/settings.py
-emaula/website/settings/secrets.json
-emaula/website/secrets.json
+# == Variáveis de ambiente ==
+.env
 
 # == Log do geckodriver (selenium) ==
 geckodriver.log

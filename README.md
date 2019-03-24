@@ -12,7 +12,25 @@ $ git clone -b NOME_DO_BRANCH https://github.com/emaula/site.git
 
 ## Instalando e rodando
 
-### Criar virtualenv na pasta
+### Para rodar com Docker:
+
+Dentro do diretório em que está o docker-compose.yml:
+
+Inicializar os containers:
+
+```
+$ docker-compose up -d --build
+```
+
+Parar os containers:
+
+```
+$ docker-compose down
+```
+
+### Para rodar sem Docker:
+
+#### Criar virtualenv na pasta
 Entre na pasta do repositório e crie um ambiente virtual (virtualenv). Se você não sabe como criar uma virtualenv, é altamente recomendado que leia o [tutorial DjangoGirls](http://tutorial.djangogirls.org/pt/django_installation/). Ative a virtualenv.
 
 Linux/BSD
@@ -31,7 +49,7 @@ $ sudo apt-get install python-virtualenv
 $ virtualenv --python=python3.6 myvenv
 ```
 
-### Se / quando virtual env já estiver criada, ativar:
+#### Se / quando virtual env já estiver criada, ativar:
 ```
 $ source myvenv/bin/activate
 ```
@@ -43,24 +61,24 @@ C:\USUARIO\PASTA\projeto> myvenv\Scripts\activate
 NOTA: virtual env *ativa* aparece como (myvenv) no começo da linha de comando.
 
 
-### Atualize o pip (gerenciador de pacotes Python)
+#### Atualize o pip (gerenciador de pacotes Python)
 ```
 (myvenv)$ pip install --upgrade pip
 ```
 
-### Python-dev
+#### Python-dev
 Antes de instalar as dependências do projeto, pode ser necessário instalar o pacote Python-dev para lidar com o Pillow:
 ```
 (myvenv)$ sudo apt-get install python3-dev python3-setuptools
 ```
 
 
-### Instalar as dependências requeridas (Django) via pip:
+#### Instalar as dependências requeridas (Django) via pip:
 ```
 (myvenv)$ pip install -r requirements.txt
 ```
 
-### Configuração das variáveis de ambiente
+#### Configuração das variáveis de ambiente
 
 Crie arquivo .env no diretório raiz do projeto (emaula/site/.env) com as seguintes variáveis:
 
@@ -69,7 +87,7 @@ SECRET_KEY=
 DEBUG=True
 ```
 
-### Crie um banco de dados e um superusuário
+#### Crie um banco de dados e um superusuário
 Entre na pasta onde está o arquivo manage.py (site/emaula).
 ```
 (myvenv)$ python manage.py migrate
@@ -80,7 +98,7 @@ Esse superusuário que você vai usar para logar localmente na interface adminis
 
 Atenção: se você estiver usando um MacOS X para desenvolver, você provavelmente precisará exportar algumas variáveis locale do Python. Siga esse link: [Fix unknown locale](http://patrick.arminio.info/fix-valueerror-unknown-locale-utf8/)
 
-###  Inicialize o servidor com as configuraçõebase:
+####  Inicialize o servidor com as configuraçõebase:
 ```
 (myvenv)$ python manage.py runserver
 ```

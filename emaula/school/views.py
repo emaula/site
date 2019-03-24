@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.views import generic
-from django.contrib.auth.models import User
+from django.contrib.auth.models import Permission, User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
+from django.contrib.contenttypes.models import ContentType
 from .forms import ProfessorForm, ProfileForm
 from .models import Classroom, Professor
 
@@ -109,6 +110,7 @@ def register(request):
             user = user_form.save()
             user.set_password(user.password)
             user.is_staff = True
+            user.is_superuser = True
             g, created = Group.objects.get_or_create(name='school_staff')
             g.user_set.add(user)
             user.save()

@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+    web:
+        restart: always
+        build: .
+        command: /usr/local/bin/gunicorn -b 0.0.0.0:8000 --log-level=debug website.wsgi
+        volumes:
+          - ./emaula/:/usr/src/app/
+          - static_volume:/usr/src/app/static/
+          - media_volume:/usr/src/app/media/
+        ports:
+          - 8001:8000
+        environment:
+            - SECRET_KEY=PLEASE_CHANGE_ME
+            - DEBUG=True
+            - SQL_ENGINE=django.db.backends.postgresql
+            - SQL_DATABASE=postgres
+            - SQL_USER=postgres
+            - SQL_PASSWORD=postgres
+            - SQL_HOST=db
+            - SQL_PORT=5432
+        depends_on:
+            - db
+    db:
+        image: postgres:11.2-alpine
+        restart: always
+        volumes:
+            - /var/run/postgres/postgres.sock:/var/run/postgres/postgres.sock
+            - postgres_data:/var/lib/postgresql/data/
+
+    nginx:
+        build: ./nginx
+        volumes:
+            - static_volume:/usr/src/app/static/
+            - media_volume:/usr/src/app/media/
+        ports:
+            - 1337:80
+        depends_on:
+            - web
+
+volumes:
+    postgres_data:
+    static_volume:
+    media_volume:
