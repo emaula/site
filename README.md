@@ -272,5 +272,11 @@ Estrutura das pastas:
 │       │   └── settings.py
 │       ├── urls.py                     # Redirecionamentos do projeto
 │       └── wsgi.py                     # Chamável para o servidor
+├── nginx                               # Configurações para servidor
+│   ├── Dockerfile                      # Configuração Docker para NGINX
+│   └── emaula.conf                     # Configuração do servidor Django
+├── docker-compose.yaml                 # Configuração containers aplicação
+├── Dockerfile                          # Configuração Docker para Django
+├── entrypoint.sh                       # Inicialização da app no servidor
 └── requirements.txt                    # Dependências do projeto
 ```
