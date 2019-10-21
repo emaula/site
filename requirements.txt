@@ -1,6 +1,6 @@
 certifi==2017.4.17
 chardet==3.0.4
-Django==2.1.7
+Django==2.1.11
 django-embed-video==1.1.2
 django-environ==0.4.5
 idna==2.5
