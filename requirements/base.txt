@@ -6,9 +6,6 @@ django-environ==0.4.5
 idna==2.5
 gunicorn==19.9.0
 olefile==0.44
-Pillow==4.1.1
-psycopg2-binary==2.7.7
+Pillow==6.2.1
 pytz==2017.2
 requests==2.21.0
-selenium==3.141.0
-urllib3==1.24.1
