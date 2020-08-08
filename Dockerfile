@@ -1,6 +1,6 @@
-FROM python:3.6.8-slim-jessie
+FROM python:3.6.11-slim-buster
 
-COPY requirements.txt ./
+COPY requirements/base.txt ./
 
 # install psycopg2 to handle postgresql
 RUN apt-get update \

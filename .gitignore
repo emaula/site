@@ -8,7 +8,7 @@ myvenv
 ../myvenv
 
 # == Variáveis de ambiente ==
-.env
+# .env
 
 # == Log do geckodriver (selenium) ==
 geckodriver.log

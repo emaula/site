@@ -12,14 +12,14 @@ services:
         ports:
           - 8001:8000
         environment:
-            - SECRET_KEY=PLEASE_CHANGE_ME
-            - DEBUG=True
-            - SQL_ENGINE=django.db.backends.postgresql
-            - SQL_DATABASE=postgres
-            - SQL_USER=postgres
-            - SQL_PASSWORD=postgres
-            - SQL_HOST=db
-            - SQL_PORT=5432
+            - SECRET_KEY: "${SECRET_KEY}"
+            - DEBUG: "${DEBUG}"
+            - SQL_ENGINE: django.db.backends.postgresql
+            - SQL_DATABASE: postgres
+            - SQL_USER: postgres
+            - SQL_PASSWORD: postgres
+            - SQL_HOST: db
+            - SQL_PORT: 5432
         depends_on:
             - db
     db:

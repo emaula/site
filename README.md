@@ -1,34 +1,36 @@
-# GUIA PARA DESENVOLVIMENTO
+# EmAula
 
-Para fazer download do projeto, navegue até o diretório onde quer colocá-lo e clone o projeto (assume que você tem Git instalado):
+Uma aplicação web feita em software livre para professoras e professores criarem e compartilharem virtualmente conteúdos de suas aulas.
+
+## Guia para Desenvolvimento
+
+<!-- MDTOC maxdepth:2 firsth1:undefined numbering:0 flatten:0 bullets:1 updateOnSave:1 -->
+
+- [Instalando e rodando](#instalando-e-rodando)   
+   - [Localmente, sem Docker](#localmente-sem-docker)   
+   - [Remoto, no CodeAnywhere:](#remoto-no-codeanywhere)   
+   - [Docker](#docker)   
+- [Testes](#testes)   
+   - [Testes funcionais](#testes-funcionais)   
+   - [Testes das apps](#testes-das-apps)   
+- [Contribuindo com o projeto](#contribuindo-com-o-projeto)   
+- [Estrutura das pastas:](#estrutura-das-pastas)   
+
+<!-- /MDTOC -->
+
+Para baixar o projeto, navegue até o diretório onde quer colocá-lo e clone o projeto (assumindo que você tem Git instalado):
 ```
 $ git clone https://github.com/emaula/site.git
 ```
 
-Para fazer download de um branch específico do projeto:
+Para baixar um branch específico do projeto:
 ```
 $ git clone -b NOME_DO_BRANCH https://github.com/emaula/site.git
 ```
 
 ## Instalando e rodando
 
-### Para rodar com Docker:
-
-Dentro do diretório em que está o docker-compose.yml:
-
-Inicializar os containers:
-
-```
-$ docker-compose up -d --build
-```
-
-Parar os containers:
-
-```
-$ docker-compose down
-```
-
-### Para rodar sem Docker:
+### Localmente, sem Docker
 
 #### Criar virtualenv na pasta
 Entre na pasta do repositório e crie um ambiente virtual (virtualenv). Se você não sabe como criar uma virtualenv, é altamente recomendado que leia o [tutorial DjangoGirls](http://tutorial.djangogirls.org/pt/django_installation/). Ative a virtualenv.
@@ -73,17 +75,17 @@ Antes de instalar as dependências do projeto, pode ser necessário instalar o p
 ```
 
 
-#### Instalar as dependências requeridas (Django) via pip:
+#### Instalar as dependências requeridas (Django) para desenvolvimento, via pip:
 ```
-(myvenv)$ pip install -r requirements.txt
+(myvenv)$ pip install -r requirements/dev.txt
 ```
 
 #### Configuração das variáveis de ambiente
 
-Crie arquivo .env no diretório raiz do projeto (emaula/site/.env) com as seguintes variáveis:
+Crie arquivo .env no diretório raiz do projeto (emaula/site/emaula/.env) com as seguintes variáveis:
 
 ```
-SECRET_KEY=
+SECRET_KEY=COLOQUE_ALGO_AQUI
 DEBUG=True
 ```
 
@@ -94,15 +96,17 @@ Entre na pasta onde está o arquivo manage.py (site/emaula).
 (myvenv)$ python manage.py createsuperuser
 ```
 
-Esse superusuário que você vai usar para logar localmente na interface administrativa.
+Esse superusuário que você vai usar para entrar localmente na interface administrativa.
 
 Atenção: se você estiver usando um MacOS X para desenvolver, você provavelmente precisará exportar algumas variáveis locale do Python. Siga esse link: [Fix unknown locale](http://patrick.arminio.info/fix-valueerror-unknown-locale-utf8/)
 
-####  Inicialize o servidor com as configuraçõebase:
+####  Inicialize o servidor com as configurações base:
 ```
 (myvenv)$ python manage.py runserver
 ```
 Abra seu navegador em localhost:8000
+
+![Página inicial do site](/imagens/home.png)
 
 OU: abra seu navegador em localhost:8000/APP_QUE_VOCÊ_QUER
 
@@ -124,25 +128,58 @@ localhost:8000/lessons
 ```
 
 
-### Para rodar no CodeAnywhere:
-1. Faça os procedimentos descritos, clonando o repositório, criando virtualenv, criando banco de dados e superusrio.
+### Remoto, no CodeAnywhere:
+
+Faça os procedimentos descritos acima, clonando o repositório, criando virtualenv, criando banco de dados e superusuário.
 
 
-2. Edite o arquivo site/emaula/website/settings/dev.py para colocar o endereço do seu container em ALLOWED_HOSTS, por exemplo:
+Edite o arquivo site/emaula/website/settings/dev.py para colocar o endereço do seu container em ALLOWED_HOSTS, por exemplo:
 ```
 ALLOWED_HOSTS = ['emaula-rsip22207208.codeanyapp.com']
 ```
 
-3. Inicialize o servidor com as configurações de desenvolvimento e com a porta 3000, para poder acessar a app por HTTPS:
+Inicialize o servidor com as configurações de desenvolvimento e com a porta 3000, para poder acessar a app por HTTPS:
 
 ```
 python manage.py runserver 0.0.0.0:3000 --settings=website.settings.dev
 ```
 
-### Para rodar os testes:
+### Docker
 
-#### Testes funcionais:
+Dentro do diretório em que está o docker-compose.yml:
 
+Criar a imagem.
+
+```
+docker build -t emaula:latest .
+```
+
+Se quiser apenas rodar o container, mapeando a porta 3000 (container) para porta 8001 (do host) é necessário definir ao menos duas variáveis de ambiente: DEBUG e SECRET_KEY.
+```
+$ docker build -t emaula:latest . && docker run -e DEBUG=True -e SECRET_KEY="MUDE_AQUI" -it --rm -p 8001:3000 --name emaula1 emaula:latest bash
+```
+
+Para inicializar o servidor com as configurações de desenvolvimento e com a porta 3000:
+
+```
+python manage.py runserver 0.0.0.0:3000 --settings=website.settings
+```
+
+Inicializar os containers:
+
+```
+$ docker-compose up -d --build
+```
+
+Parar os containers:
+
+```
+$ docker-compose down
+```
+
+## Testes
+
+### Testes funcionais
 Você vai precisar ter o Geckodriver instalado e disponível no PATH para utilizar o Selenium.
 
 - Baixe o geckodriver:
@@ -150,12 +187,12 @@ Você vai precisar ter o Geckodriver instalado e disponível no PATH para utiliz
 
 - OU com wget:
 ```
-$ wget -cv https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
+$ wget -cv https://github.com/mozilla/geckodriver/releases/download/v0.27.0/geckodriver-v0.27.0-linux64.tar.gz
 ```
 
 - Extraia, mova para o diretório bin e coloque no PATH:
 ```
-$ tar -xvzf geckodriver-v0.24.0-linux64.tar.gz
+$ tar -xvzf geckodriver-v0.27.0-linux64.tar.gz
 $ sudo cp geckodriver /usr/local/bin
 $ sudo chmod +x /usr/local/bin/geckodriver
 $ export PATH=$PATH:/usr/local/bin/geckodriver
@@ -167,7 +204,7 @@ Rodar os testes funcionais:
 (myvenv)$ python manage.py test functional_tests
 ```
 
-#### Testes das apps:
+### Testes das apps
 
 Rodar os testes:
 
@@ -177,31 +214,11 @@ Rodar os testes:
 (myvenv)$ python manage.py test lessons
 ```
 
-### Para commitar as mudanças que você fez:
+## Contribuindo com o projeto
 
-Crie um novo branch para a funcionalidade desenvolvida:
-```
-$ git checkout -b NOME_DO_NOVO_BRANCH
-```
+Veja [CONTRIBUTING.md](https://github.com/emaula/site/blob/master/CONTRIBUTING.md).
 
-Adicione os arquivos alterados. Por exemplo:
-```
-$ git add --all .
-```
-
-Faça o commit com a mensagem:
-```
-$ git commit -m "altera tal e tal coisa"
-
-```
-
-Envie para o repositório original, criando branch novo lá:
-```
-$ git push origin NOME_DO_NOVO_BRANCH
-```
-
-
-Estrutura das pastas:
+## Estrutura das pastas:
 ```
 .
 ├── README.md                           # Esse arquivo que você está lendo
