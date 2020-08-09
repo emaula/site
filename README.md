@@ -19,69 +19,132 @@ Uma aplicação web feita em software livre para professoras e professores criar
 Veja [CONTRIBUTING.md](https://github.com/emaula/site/blob/master/CONTRIBUTING_pt-br.md).
 
 ---
+
 ## Guia para Desenvolvimento
 
-Para baixar o projeto, navegue até o diretório onde quer colocá-lo e clone o projeto (assumindo que você tem Git instalado):
-```
+Para baixar o projeto, navegue até o diretório onde quer colocá-lo e clone o projeto (assumindo que você tem [Git instalado](https://docs.github.com/pt/github/getting-started-with-github/set-up-git)):
+
+```sh
 $ git clone https://github.com/emaula/site.git
 ```
 
 Para baixar um branch específico do projeto:
-```
+
+```sh
 $ git clone -b NOME_DO_BRANCH https://github.com/emaula/site.git
 ```
+
+---
 
 ## Instalando e rodando
 
 ### Localmente, sem Docker
 
 #### Criar virtualenv na pasta
+
 Entre na pasta do repositório e crie um ambiente virtual (virtualenv). Se você não sabe como criar uma virtualenv, é altamente recomendado que leia o [tutorial DjangoGirls](http://tutorial.djangogirls.org/pt/django_installation/). Ative a virtualenv.
 
 Linux/BSD
-```
+
+```sh
 $ python3 -m venv myvenv
 ```
 
 Windows
-```
+
+```bat
 C:\DIRETORIO_COM_PYTHON\python -m venv myvenv
 ```
 
 Ubuntu
-```
+
+```sh
 $ sudo apt-get install python-virtualenv
 $ virtualenv --python=python3.6 myvenv
 ```
 
 #### Se / quando virtual env já estiver criada, ativar:
-```
+
+```sh
 $ source myvenv/bin/activate
 ```
+
 OU
-```
+
+```bat
 C:\USUARIO\PASTA\projeto> myvenv\Scripts\activate
 ```
 
 NOTA: virtual env *ativa* aparece como (myvenv) no começo da linha de comando.
 
+---
 
 #### Atualize o pip (gerenciador de pacotes Python)
+
+Presumindo que o [pip](https://pip.pypa.io/) já está instalado.
+
+##### Instalando pip (se não estiver instalado)
+
+###### Linux
+
+```sh
+$ python3 -m ensurepip
 ```
+
+###### Windows
+
+```bat
+C:\Python -m ensurepip
+```
+
+###### Debian (ou distribuições Linux sem ensurepip)
+
+```sh
+$ sudo apt install python3-{pip,setuptools,wheel}
+$ sudo python3 -m pip install --upgrade pip
+```
+
+##### Somente atualizar
+
+Se pip já estiver instalado e o virtualenv já configurado:
+
+```sh
 (myvenv)$ pip install --upgrade pip
 ```
 
+OU
+
+```bat
+C:\pip install --upgrade pip
+```
+
+---
+
 #### Python-dev
+
 Antes de instalar as dependências do projeto, pode ser necessário instalar o pacote Python-dev para lidar com o Pillow:
-```
-(myvenv)$ sudo apt-get install python3-dev python3-setuptools
+
+```sh
+$ sudo apt-get install python3-{dev,setuptools}
 ```
 
+---
 
-#### Instalar as dependências requeridas (Django) para desenvolvimento, via pip:
-```
+#### Instalar as dependências requeridas (Django) para desenvolvimento, via pip requirements:
+
+```sh
 (myvenv)$ pip install -r requirements/dev.txt
 ```
+
+##### Pipenv
+
+Somente necessário se [pipenv](https://pipenv.pypa.io/) estiver sendo usado
+
+```sh
+(myenv)$ pipenv install
+```
+
+---
 
 #### Configuração das variáveis de ambiente
 
@@ -92,9 +155,13 @@ SECRET_KEY=COLOQUE_ALGO_AQUI
 DEBUG=True
 ```
 
+---
+
 #### Crie um banco de dados e um superusuário
+
 Entre na pasta onde está o arquivo manage.py (site/emaula).
-```
+
+```sh
 (myvenv)$ python manage.py migrate
 (myvenv)$ python manage.py createsuperuser
 ```
@@ -103,52 +170,61 @@ Esse superusuário que você vai usar para entrar localmente na interface admini
 
 Atenção: se você estiver usando um MacOS X para desenvolver, você provavelmente precisará exportar algumas variáveis locale do Python. Siga esse link: [Fix unknown locale](http://patrick.arminio.info/fix-valueerror-unknown-locale-utf8/)
 
+---
+
 ####  Inicialize o servidor com as configurações base:
-```
+
+```sh
 (myvenv)$ python manage.py runserver
 ```
-Abra seu navegador em localhost:8000
+
+Abra seu navegador em <http://localhost:8000> (mude "8000" para a porta alternativa caso tenha usado outra)
 
 ![Página inicial do site](/imagens/home.png)
 
-OU: abra seu navegador em localhost:8000/APP_QUE_VOCÊ_QUER
+OU: abra seu navegador em **localhost:8000/APP_QUE_VOCÊ_QUER**
 
 Ex:
 
 Para vermos a administração:
-```
-localhost:8000/admin
-```
+
+> <http://localhost:8000/admin>
 
 Para vermos a app da escola:
-```
-localhost:8000/school
-```
+
+> <http://localhost:8000/school>
 
 Para vermos a app de aulas:
-```
-localhost:8000/lessons
-```
+
+> <http://localhost:8000/lessons>
+
+**(fim da instruções para instalação local)**
+
+---
 
 ### Remoto, no PythonAnywhere:
 
 [Instruções para o PythonAnywhere](/deploy%20python%20anywhere.md)
 
+---
+
 ### Remoto, no CodeAnywhere:
 
 Faça os procedimentos descritos acima, clonando o repositório, criando virtualenv, criando banco de dados e superusuário.
 
+Edite o arquivo `site/emaula/website/settings/dev.py` para colocar o endereço do seu container em **ALLOWED_HOSTS**, por exemplo:
 
-Edite o arquivo site/emaula/website/settings/dev.py para colocar o endereço do seu container em ALLOWED_HOSTS, por exemplo:
-```
+```py
 ALLOWED_HOSTS = ['emaula-rsip22207208.codeanyapp.com']
 ```
 
 Inicialize o servidor com as configurações de desenvolvimento e com a porta 3000, para poder acessar a app por HTTPS:
 
+```sh
+$ python3 manage.py runserver 0.0.0.0:3000 --settings=website.settings.dev
 ```
-python manage.py runserver 0.0.0.0:3000 --settings=website.settings.dev
-```
+
+---
 
 ### Docker
 
@@ -156,37 +232,41 @@ Dentro do diretório em que está o docker-compose.yml:
 
 Criar a imagem.
 
-```
-docker build -t emaula:latest .
+```sh
+$ docker build -t emaula:latest .
 ```
 
-Se estiver utilizando um servidor, é necessário editar o arquivo site/emaula/website/settings.py para colocar o endereço do servidor em ALLOWED_HOSTS, por exemplo:
-```
+Se estiver utilizando um servidor, é necessário editar o arquivo `site/emaula/website/settings.py` para colocar o endereço do servidor em **ALLOWED_HOSTS**, por exemplo:
+
+```py
 ALLOWED_HOSTS = ['192.168.0.1']
 ```
 
-Se quiser apenas rodar o container, mapeando a porta 3000 (container) para porta 8001 (do host) é necessário definir ao menos duas variáveis de ambiente: DEBUG e SECRET_KEY.
-```
+Se quiser apenas rodar o container, mapeando a porta **3000** (container) para porta **8001** (do host) é necessário definir ao menos duas variáveis de ambiente: **DEBUG** e **SECRET_KEY**.
+
+```sh
 $ docker build -t emaula:latest . && docker run -e DEBUG=True -e SECRET_KEY="MUDE_AQUI" -it --rm -p 8001:3000 --name emaula1 emaula:latest bash
 ```
 
 Para inicializar o servidor com as configurações de desenvolvimento e com a porta 3000:
 
-```
-python manage.py runserver 0.0.0.0:3000 --settings=website.settings
+```sh
+$ python3 manage.py runserver 0.0.0.0:3000 --settings=website.settings
 ```
 
 Inicializar os containers:
 
-```
+```sh
 $ docker-compose up -d --build
 ```
 
 Parar os containers:
 
-```
+```sh
 $ docker-compose down
 ```
+
+---
 
 ## Testes
 
@@ -197,21 +277,23 @@ Você vai precisar ter o Geckodriver instalado e disponível no PATH para utiliz
 [https://github.com/mozilla/geckodriver/releases](https://github.com/mozilla/geckodriver/releases)
 
 - OU com wget:
-```
+
+```sh
 $ wget -cv https://github.com/mozilla/geckodriver/releases/download/v0.27.0/geckodriver-v0.27.0-linux64.tar.gz
 ```
 
 - Extraia, mova para o diretório bin e coloque no PATH:
-```
+
+```sh
 $ tar -xvzf geckodriver-v0.27.0-linux64.tar.gz
-$ sudo cp geckodriver /usr/local/bin
-$ sudo chmod +x /usr/local/bin/geckodriver
+$ sudo cp -r geckodriver /usr/local/bin
+$ sudo chmod a+x /usr/local/bin/geckodriver
 $ export PATH=$PATH:/usr/local/bin/geckodriver
 ```
 
 Rodar os testes funcionais:
 
-```
+```sh
 (myvenv)$ python manage.py test functional_tests
 ```
 
@@ -219,13 +301,15 @@ Rodar os testes funcionais:
 
 Rodar os testes:
 
-```
+```sh
 (myvenv)$ python manage.py test school
-
 (myvenv)$ python manage.py test lessons
 ```
 
+---
+
 ## Estrutura das pastas:
+
 ```
 .
 ├── README.md                           # Esse arquivo que você está lendo
@@ -296,3 +380,4 @@ Rodar os testes:
 ├── entrypoint.sh                       # Inicialização da app no servidor
 └── requirements.txt                    # Dependências do projeto
 ```
+
