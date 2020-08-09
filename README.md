@@ -6,7 +6,7 @@ A free software Django web application made for teachers to create and virtually
 
 **Contributing with the project**
 
-See [CONTRIBUTING.md](https://github.com/emaula/site/blob/master/CONTRIBUTING.md).
+See [CONTRIBUTING.md](/CONTRIBUTING.md).
 
 ---
 
@@ -16,7 +16,7 @@ Uma aplicação web feita em software livre para professoras e professores criar
 
 **Contribuindo com o projeto**
 
-Veja [CONTRIBUTING.md](https://github.com/emaula/site/blob/master/CONTRIBUTING_pt-br.md).
+Veja [CONTRIBUTING.md](/CONTRIBUTING_pt-br.md).
 
 ---
 
