@@ -5,9 +5,10 @@ Uma aplicação web feita em software livre para professoras e professores criar
 ## Guia para Desenvolvimento
 
 <!-- MDTOC maxdepth:2 firsth1:undefined numbering:0 flatten:0 bullets:1 updateOnSave:1 -->
-
+ 
 - [Instalando e rodando](#instalando-e-rodando)   
    - [Localmente, sem Docker](#localmente-sem-docker)   
+   - [Remoto, no PythonAnywhere:](#remoto-no-pythonanywhere)   
    - [Remoto, no CodeAnywhere:](#remoto-no-codeanywhere)   
    - [Docker](#docker)   
 - [Testes](#testes)   
@@ -127,6 +128,9 @@ Para vermos a app de aulas:
 localhost:8000/lessons
 ```
 
+### Remoto, no PythonAnywhere:
+
+[Instruções para o PythonAnywhere](/deploy%20python%20anywhere.md)
 
 ### Remoto, no CodeAnywhere:
 
