@@ -1,21 +1,26 @@
-# Implantação no Python Anywhere
+# Instalação no Python Anywhere (modo desenvolvimento)
 
 ## Criar uma conta no Python Anywhere
 
 1. Plano básico no [Python Anywhere](https://www.pythonanywhere.com/) é gratuito, e mantém app rodando por três meses para testar. Crie uma conta lá, em "Pricing & signup" / "Create a Beginner account".
 
-2. Validar seu e-mail.
+2. Valide seu e-mail.
 
 ## Abrir novo console e instalar o EmAula
 
-1. Em "Consoles", "Start a new console" com Bash.
+1. Em "Consoles\", "Start a new console" com Bash.
 
-2. Clone o projeto do GitHub, conforme o "Guia para desenvolvimento".
-
-3. Crie um ambiente virtual com o seguinte comando:
+2. Crie um ambiente virtual com o seguinte comando:
 
 ```
-$ mkvirtualenv --python=/usr/bin/python3.6 myvenv
+$ mkvirtualenv myvenv --python=/usr/bin/python3.6
+```
+
+3. Clone o projeto do GitHub, conforme o "Guia para desenvolvimento".
+
+```
+$ git clone https://github.com/emaula/site.git
+
 ```
 
 4. Entre na pasta do projeto.
@@ -26,7 +31,7 @@ $ mkvirtualenv --python=/usr/bin/python3.6 myvenv
 5. Instale as dependências.
 
 ```
-(myvenv)$ pip install -r requirements.txt
+(myvenv)$ pip install -r requirements/dev.txt
 ```
 
 6. Entre na pasta do manage.py
@@ -35,22 +40,11 @@ $ mkvirtualenv --python=/usr/bin/python3.6 myvenv
 $ cd emaula
 ```
 
-7. Compile os arquivos estáticos (imagens, folhas de estilo, etc):
-
+7. Crie um banco de dados e um superusuário
+Entre na pasta onde está o arquivo manage.py (site/emaula).
 ```
-$ python manage.py collectstatic --settings=website.settings.base
-```
-
-8. Configure o banco de dados:
-
-```
-python manage.py migrate --settings=website.settings.base
-```
-
-9. Crie um superusuário que administrará o site:
-
-```
-python manage.py createsuperuser --settings=website.settings.base
+(myvenv)$ python manage.py migrate
+(myvenv)$ python manage.py createsuperuser
 ```
 
 10. Crie uma web app com configuração manual
@@ -89,18 +83,19 @@ import sys
 
 # Supondo que as configurações do Django estão como no repositório, o que se
 # traduz para '/home/USERNAME/site/emaula/website'
-path = '/home/emaulaxyz/site/emaula/website'
+path = os.path.expanduser('~/site/emaula/website')
 
 if path not in sys.path:
     sys.path.insert(0, path)
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'website.settings.base'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'website.settings'
 
 from django.core.wsgi import get_wsgi_application
-application = get_wsgi_application()
+from django.contrib.staticfiles.handlers import StaticFilesHandler
+application = StaticFilesHandler(get_wsgi_application())
 ```
 
-13. Adicione o seu endereço no Python Anywhere à configuração de "ALLOWED_HOSTS", no arquivo "site/emaula/website/settings/base.py", por exemplo:
+13. Usando 'browse files', navegue até '/home/USERNAME/site/emaula/website' e edite settings.py. Adicione o seu endereço no Python Anywhere à configuração de "ALLOWED_HOSTS", no arquivo, por exemplo:
 
 ```
 ALLOWED_HOSTS = ['emaulaxyz.pythonanywhere.com']
