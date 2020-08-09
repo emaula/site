@@ -21,7 +21,20 @@ Veja [CONTRIBUTING.md](/CONTRIBUTING_pt-br.md).
 ---
 
 ## Guia para Desenvolvimento
+<!-- MDTOC maxdepth:2 firsth1:0 numbering:0 flatten:0 bullets:1 updateOnSave:1 -->
 
+- [Guia para Desenvolvimento](#guia-para-desenvolvimento)   
+- [Instalando e rodando](#instalando-e-rodando)   
+   - [Localmente, sem Docker](#localmente-sem-docker)   
+   - [Remoto, no PythonAnywhere:](#remoto-no-pythonanywhere)   
+   - [Remoto, no CodeAnywhere:](#remoto-no-codeanywhere)   
+   - [Docker](#docker)   
+- [Testes](#testes)   
+   - [Testes funcionais](#testes-funcionais)   
+   - [Testes das apps](#testes-das-apps)   
+- [Estrutura das pastas:](#estrutura-das-pastas)   
+
+<!-- /MDTOC -->
 Para baixar o projeto, navegue até o diretório onde quer colocá-lo e clone o projeto (assumindo que você tem [Git instalado](https://docs.github.com/pt/github/getting-started-with-github/set-up-git)):
 
 ```sh
