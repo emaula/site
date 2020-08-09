@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import include, url
+from django.conf.urls import include, re_path
 from django.contrib import admin
 from django.conf import settings
 from django.views.generic import RedirectView
@@ -22,12 +22,12 @@ from django.contrib.auth import views
 
 
 urlpatterns = [
-    url(r'^$', RedirectView.as_view(url='/school/', permanent=True)),
-    url(r'^admin/', admin.site.urls),
-    url(r'^accounts/', include('django.contrib.auth.urls')),
-    url(r'^accounts/login/$', views.LoginView, name='login'),
-    url(r'^school/', include('school.urls')),
-    url(r'^lessons/', include('lessons.urls')),
+    re_path(r'^$', RedirectView.as_view(url='/school/', permanent=True)),
+    re_path(r'^admin/', admin.site.urls),
+    re_path(r'^accounts/', include('django.contrib.auth.urls')),
+    re_path(r'^accounts/login/$', views.LoginView, name='login'),
+    re_path(r'^school/', include('school.urls')),
+    re_path(r'^lessons/', include('lessons.urls')),
     # Redireciona a home para a nossa aplicação:
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # STATIC URL STATIC ROOT para servir arquivos estáticos in development
