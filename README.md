@@ -1,5 +1,7 @@
 # EmAula
 
+[![Actions Status](https://github.com/emaula/site/workflows/Em%20Aula%20CI/badge.svg)](https://github.com/emaula/site/actions)
+
 **[en]**
 
 A free software Django web application made for teachers to create and virtually share content with their students.
