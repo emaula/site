@@ -158,6 +158,11 @@ Criar a imagem.
 docker build -t emaula:latest .
 ```
 
+Se estiver utilizando um servidor, é necessário editar o arquivo site/emaula/website/settings.py para colocar o endereço do servidor em ALLOWED_HOSTS, por exemplo:
+```
+ALLOWED_HOSTS = ['192.168.0.1']
+```
+
 Se quiser apenas rodar o container, mapeando a porta 3000 (container) para porta 8001 (do host) é necessário definir ao menos duas variáveis de ambiente: DEBUG e SECRET_KEY.
 ```
 $ docker build -t emaula:latest . && docker run -e DEBUG=True -e SECRET_KEY="MUDE_AQUI" -it --rm -p 8001:3000 --name emaula1 emaula:latest bash

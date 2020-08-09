@@ -1,12 +1,12 @@
 FROM python:3.6.11-slim-buster
 
-COPY requirements/base.txt ./
+COPY requirements ./requirements/
 
 # install psycopg2 to handle postgresql
 RUN apt-get update \
     && apt-get install -y python3-psycopg2
 
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements/production.txt
 
 COPY . .
 
