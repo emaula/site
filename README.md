@@ -221,7 +221,7 @@ ALLOWED_HOSTS = ['emaula-rsip22207208.codeanyapp.com']
 Inicialize o servidor com as configurações de desenvolvimento e com a porta 3000, para poder acessar a app por HTTPS:
 
 ```sh
-$ python3 manage.py runserver 0.0.0.0:3000 --settings=website.settings.dev
+$ python3 manage.py runserver 0.0.0.0:3000 --settings=website.settings
 ```
 
 ---
