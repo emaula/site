@@ -3,17 +3,18 @@ import time
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.firefox.webdriver import WebDriver
+from selenium import webdriver
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 MAX_WAIT = 10
-
+binary = FirefoxBinary('/usr/lib64/firefox/firefox')
 
 class NewVisitorTest(StaticLiveServerTestCase):
 
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.selenium = WebDriver()
+        cls.selenium = webdriver.Firefox(executable_path='./geckodriver', firefox_binary=binary)
         cls.selenium.implicitly_wait(10)
 
     @classmethod
