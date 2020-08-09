@@ -212,7 +212,7 @@ Para vermos a app de aulas:
 
 Faça os procedimentos descritos acima, clonando o repositório, criando virtualenv, criando banco de dados e superusuário.
 
-Edite o arquivo `site/emaula/website/settings/dev.py` para colocar o endereço do seu container em **ALLOWED_HOSTS**, por exemplo:
+Edite o arquivo `site/emaula/website/settings.py` para colocar o endereço do seu container em **ALLOWED_HOSTS**, por exemplo:
 
 ```py
 ALLOWED_HOSTS = ['emaula-rsip22207208.codeanyapp.com']
@@ -380,4 +380,3 @@ Rodar os testes:
 ├── entrypoint.sh                       # Inicialização da app no servidor
 └── requirements.txt                    # Dependências do projeto
 ```
-
