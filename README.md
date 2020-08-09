@@ -1,23 +1,25 @@
 # EmAula
 
+**[en]**
+
+A free software Django web application made for teachers to create and virtually share content with their students.
+
+**Contributing with the project**
+
+See [CONTRIBUTING.md](https://github.com/emaula/site/blob/master/CONTRIBUTING.md).
+
+---
+
+**[pt-br]**
+
 Uma aplicação web feita em software livre para professoras e professores criarem e compartilharem virtualmente conteúdos de suas aulas.
 
+**Contribuindo com o projeto**
+
+Veja [CONTRIBUTING.md](https://github.com/emaula/site/blob/master/CONTRIBUTING_pt-br.md).
+
+---
 ## Guia para Desenvolvimento
-
-<!-- MDTOC maxdepth:2 firsth1:undefined numbering:0 flatten:0 bullets:1 updateOnSave:1 -->
- 
-- [Instalando e rodando](#instalando-e-rodando)   
-   - [Localmente, sem Docker](#localmente-sem-docker)   
-   - [Remoto, no PythonAnywhere:](#remoto-no-pythonanywhere)   
-   - [Remoto, no CodeAnywhere:](#remoto-no-codeanywhere)   
-   - [Docker](#docker)   
-- [Testes](#testes)   
-   - [Testes funcionais](#testes-funcionais)   
-   - [Testes das apps](#testes-das-apps)   
-- [Contribuindo com o projeto](#contribuindo-com-o-projeto)   
-- [Estrutura das pastas:](#estrutura-das-pastas)   
-
-<!-- /MDTOC -->
 
 Para baixar o projeto, navegue até o diretório onde quer colocá-lo e clone o projeto (assumindo que você tem Git instalado):
 ```
@@ -223,10 +225,6 @@ Rodar os testes:
 (myvenv)$ python manage.py test lessons
 ```
 
-## Contribuindo com o projeto
-
-Veja [CONTRIBUTING.md](https://github.com/emaula/site/blob/master/CONTRIBUTING.md).
-
 ## Estrutura das pastas:
 ```
 .
@@ -287,15 +285,7 @@ Veja [CONTRIBUTING.md](https://github.com/emaula/site/blob/master/CONTRIBUTING.m
 │   └── website                         # Configurações do site
 │       ├── __init__.py
 │       ├── index.html
-│       ├── media
-│       │   └── python.png
-│       ├── settings
-│       │   ├── __init__.py
-│       │   ├── base.py                 # Configuração base para as outras
-│       │   ├── dev.py                  # Configuração para ambiente local
-│       │   ├── production.py
-│       │   ├── secrets.json
-│       │   └── settings.py
+│       ├── settings.py                 # Configuração do projeto
 │       ├── urls.py                     # Redirecionamentos do projeto
 │       └── wsgi.py                     # Chamável para o servidor
 ├── nginx                               # Configurações para servidor

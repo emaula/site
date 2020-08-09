@@ -1,26 +1,5 @@
-### Para commitar as mudanças que você fez:
+# To contribute with the project
 
-Forke esse repositório para o seu Github e faça as alterações.
+Contributions are welcome, as long as they follow our [Code of Conduct](/CODE_OF_CONDUCT.md).
 
-Crie um novo branch para a funcionalidade desenvolvida:
-```
-$ git checkout -b NOME_DO_NOVO_BRANCH
-```
-
-Adicione os arquivos alterados. Por exemplo:
-```
-$ git add --all .
-```
-
-Faça o commit descrevendo na mensagem o que foi alterado:
-```
-$ git commit -m "altera tal e tal coisa"
-
-```
-
-Envie para o repositório de origem, criando branch nova lá:
-```
-$ git push --set-upstream origin NOME_DO_NOVO_BRANCH
-```
-
-Abra um Pull-Request para esse repositório.
+If you noticed a bug or if you have a suggestion for improvement of the project, feel free to create a new "Issue" on this repository: [https://github.com/emaula/site/issues/new](https://github.com/emaula/site/issues/new).
